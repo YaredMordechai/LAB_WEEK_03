@@ -21,10 +21,12 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val coffeeList = listOf(
-            view.findViewById<View>(R.id.affogato),
-            view.findViewById<View>(R.id.americano),
-            view.findViewById<View>(R.id.latte)
+        val coffeeList = listOf<View>(
+            view.findViewById(R.id.affogato),
+            view.findViewById(R.id.americano),
+            view.findViewById(R.id.latte),
+            view.findViewById(R.id.cappuccino),
+            view.findViewById(R.id.espresso)
         )
 
         coffeeList.forEachIndexed { index, coffee ->
