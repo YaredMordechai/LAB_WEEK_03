@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 
-class ListFragment : Fragment(), View.OnClickListener {
+class ListFragment : Fragment() {
 
     private lateinit var coffeeListener: CoffeeListener
 
@@ -18,10 +18,6 @@ class ListFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,15 +25,16 @@ class ListFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val coffeeList = listOf<View>(
-            view.findViewById(R.id.affogato),
-            view.findViewById(R.id.americano),
-            view.findViewById(R.id.latte)
-        )
-        coffeeList.forEach { it.setOnClickListener(this) }
-    }
 
-    override fun onClick(v: View?) {
-        v?.let { coffee -> coffeeListener.onSelected(coffee.id) }
+        // mapping kopi -> index
+        view.findViewById<View>(R.id.affogato).setOnClickListener {
+            coffeeListener.onSelected(0)
+        }
+        view.findViewById<View>(R.id.americano).setOnClickListener {
+            coffeeListener.onSelected(1)
+        }
+        view.findViewById<View>(R.id.latte).setOnClickListener {
+            coffeeListener.onSelected(2)
+        }
     }
 }
